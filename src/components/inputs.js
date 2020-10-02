@@ -5,7 +5,6 @@ import { sum } from 'lodash'
 import { activeParties } from '../utils/data'
 import { getSeatAllocations, formatName, useStyles } from '../utils/'
 
-
 export const Inputs = ({ year, setSeats }) => {
   let activePartiesArray = Object.keys(activeParties)
   const [currentVotes, setVotes] = useState(activeParties)
@@ -42,15 +41,6 @@ export const Inputs = ({ year, setSeats }) => {
       ...currentElectorates,
       [event.target.name]: value
     })
-  }
-  const handleVoteFocus = event => {
-    let { value } = event.target
-    if (value === '0') {
-      setVotes({
-        ...currentVotes,
-        [event.target.name]: ''
-      })
-    }
   }
   return (
     <>
@@ -109,9 +99,8 @@ export const Inputs = ({ year, setSeats }) => {
                   size='small'
                   label={`${formatName(party)}`}
                   name={party}
-                  value={currentVotes[party]}
+                  value={currentVotes[party] || ''}
                   onChange={handleVotesChange}
-                  onFocus={handleVoteFocus}
                 />
               </Grid>
               <Grid item xs={6}>
