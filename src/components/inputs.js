@@ -30,10 +30,10 @@ export const Inputs = ({ year, setSeats }) => {
   }, [currentElectorates])
 
   const handleVotesChange = event => {
-    let { value } = event.target
+    let votes = event.target.value === "" ? "" : Number(event.target.value) 
     setVotes({
       ...currentVotes,
-      [event.target.name]: Number(value)
+      [event.target.name]: votes
     })
   }
   const handleElectoratesChange = event => {
